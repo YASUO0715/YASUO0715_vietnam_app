@@ -41,4 +41,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $guarded = ['id'];
+
+    public static $rules = [
+        'name' => 'required|max: 30',
+        'name_kana' => 'required',
+        'campany_name' => 'required|max: 50',
+        'image_url' => 'image|file',
+        'pr' => 'required|max: 500',
+        'price' => 'required|max: 50',
+
+    ];
 }
