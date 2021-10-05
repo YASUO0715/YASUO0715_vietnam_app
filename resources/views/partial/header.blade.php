@@ -15,8 +15,9 @@
                 <a class="nav-link disabled" href="#">Disabled</a>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search">
+        <form class="form-inline my-2 my-lg-0" mechod="GET" action="{{ route('items.index') }}">
+            <input class="form-control mr-sm-2" type="search" name="category" placeholder="カテゴリ">
+            <input class="form-control mr-sm-2" type="search" name="name" placeholder="商品名">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
     </div>

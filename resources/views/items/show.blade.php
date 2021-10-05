@@ -29,5 +29,16 @@
             </tr>
         </tbody>
     </table>
-    <a href="{{ route('items.index') }}">戻る</a>
+    
+    <div class="button-group">
+        <!-- 商品のidを元に編集ページへ遷移する -->
+        <button class="btn btn-outline-primary" onclick="location.href='/items'">戻る</a>
+        <button class="btn btn-outline-primary" onclick="location.href='/items/{{ $item->id }}/edit'">編集する</button>
+        <form action="/items/{{ $item->id }}" method="post">
+            @csrf
+            @method('DELETE')
+            <button class="btn btn-outline-danger" onclick="if(!confirm('削除しますか？')){return false}">削除</button>
+            
+        </form>
+    </div>
 @endsection

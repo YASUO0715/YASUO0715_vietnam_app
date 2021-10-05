@@ -10015,3 +10015,7 @@ h3 {
 .logo {
   font-family: "Kaisei Decol", serif;
 }
+
+.error {
+      color: red;
+}
