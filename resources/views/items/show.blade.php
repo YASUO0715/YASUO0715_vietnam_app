@@ -8,24 +8,32 @@
         <colgroup span="1" style="width:200px;background-color:#efefef;"></colgroup>
         <tbody>
             <tr>
-                <th>店名</th>
+                <th>商品名</th>
                 <td>
                     <p>{{ $item->name }}</p>
                 </td>
             </tr>
             <tr>
-                <th>店名(日本語)</th>
+                <th>商品名(日本語)</th>
                 <td>
                     <p>{{ $item->name_kana }}</p>
                 </td>
             </tr>
             <tr>
+                <th>カテゴリー</th>
+                <td>
+                    <p>{{ $item->category->name }}</p>
+                </td>
+            </tr>
+
+
+            <tr>
                 <th>説明</th>
-                <td>{{ $item->pr }}</td>
+                <td>{!! nl2br($item->pr) !!}</td>
             </tr>
             <tr>
                 <th>値段</th>
-                <td>{{ $item->price }}VND</td>
+                <td><?php echo number_format($item->price)?>VND</td>
             </tr>
         </tbody>
     </table>

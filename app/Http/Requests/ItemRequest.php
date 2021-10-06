@@ -24,12 +24,12 @@ class ItemRequest extends FormRequest
     public function rules()
     {
         return [
-
             'name' => 'required|string|max:50',
             'name_kana' => 'required|string|max:50',
             'campany_name' => 'required|string|min:1',
+            // 'category_id' => 'required|integer',
             'image_url' => 'required|active_url',
-            'pr' =>'required|string|min:1',
+            'pr' => 'required|string|min:1',
             'price' => 'required|integer'
         ];
     }

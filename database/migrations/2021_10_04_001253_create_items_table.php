@@ -22,7 +22,7 @@ class CreateItemsTable extends Migration
             $table->text('image_url')->nullable();
             $table->string('pr');
             $table->integer('price');
-            $table->string('category_id')->nullable();
+            $table->integer('category_id')->unsigned()->default(1)->foreign('category_id')->references('id')->on('categories')->onDelete('restrict');
             $table->timestamps();
         });
     }
