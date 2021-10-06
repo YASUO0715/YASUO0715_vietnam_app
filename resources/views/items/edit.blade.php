@@ -18,7 +18,7 @@
     @endif
     <h1>商品更新フォーム</h1>
     <!-- 更新先はitemsのidにしないと増える php artisan rote:listで確認① -->
-    <form action="/items/{{ $item->id }}" method="post">
+    <form action="/items/{{ $item->id }}" method="post" enctype="multipart/form-data">
         @csrf
         <!-- formタグはPUTやDELETEをサポートしていないため, @ methodで指定する必要がある -->
         @method('PATCH')
@@ -43,17 +43,33 @@
         </p>
 
         <p>
-            <label for="category_id">カテゴリーID <br><input type="text" name="category_id"
-                    value="{{ old('category_id',$category_id->category_id) }}"></label>
+            <label for="category_id">カテゴリ <br><select input type="text" name="category_id"  value="{{ old('category_id', $item->category_id) }}"></label>
+            <option value="カテゴリ" selected disabled>カテゴリ</option>
+            <option value=1>麺類</option>
+            <option value=2>コーヒー・お茶</option>
+            <option value=3>調味料</option>
+            <option value=4>野菜</option>
+            </select>
         </p>
 
-        <p>
-            <label for="image_url">商品画像URL </label><br>
-            <input type="text" name="image_url" value="{{ old('image_url', $item->image_url) }}">
+        <p>              
+            <label for="image_url">画像 </label><br>
+            <input type="file" name="image_url"  class="form-control" placeholder="Image" onchange="previewImage(this);" 
+            value="{{ old('image_url')}}">
+            <img id="preview" style="max-width:200px;">
         </p>
         <button type="submit" class="btn btn-outline-success"> 更新 </button>
     </form>
-    </body>
 
-    </html>
+    <script>
+            function previewImage(obj) {
+                var fileReader = new FileReader();
+                fileReader.onload = (function() {
+                    document.getElementById('preview').src = fileReader.result;
+                });
+                fileReader.readAsDataURL(obj.files[0]);
+            }
+            </script>
+
+
 @endsection

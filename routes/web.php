@@ -20,3 +20,6 @@ use App\Http\Controllers\ItemController;
 Route::get('/', [ItemController::class, 'index']);
 
 Route::resource('items', App\Http\Controllers\ItemController::class);
+
+
+

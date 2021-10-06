@@ -19,7 +19,7 @@
             </div>
         @endif
         <h1>新規商品登録</h1>
-        <form action="{{ route('items.store') }}" method="post">
+        <form action="{{ route('items.store') }}" method="post" enctype="multipart/form-data">
             @csrf
 
             <colgroup span="1" style="width:200px;background-color:#efefef;"></colgroup>
@@ -35,7 +35,8 @@
                         value="{{ old('campany_name') }}"></label>
             </p>
             <p>
-                <label for="pr">説明 <br><textarea type="text" name="pr" value="{{ old('pr') }}">{{ old('pr')  }}</textarea></label>
+                <label for="pr">説明 <br><textarea type="text" name="pr"
+                        value="{{ old('pr') }}">{{ old('pr') }}</textarea></label>
             </p>
 
             <p>
@@ -43,23 +44,25 @@
             </p>
             <p>
             <p>
-                <label for="category_id">カテゴリーID <br><input type="text" name="category_id" value="{{ old('category_id') }}"></label>
+                <label for="category_id">カテゴリーID <br><select input type="text" name="category_id"
+                        value="{{ old('category_id') }}"></label>
+                <option value="カテゴリ" selected disabled>カテゴリ</option>
+                <option value=1>麺類</option>
+                <option value=2>コーヒー・お茶</option>
+                <option value=3>調味料</option>
+                <option value=4>野菜</option>
+                </select>
             </p>
             <p>
-                {{-- <label for="image_url">商品画像URL</label><br>
-                <input type="text" name="image_url" value="{{ old('image_url') }}"> --}}
-                
-            <div class="form-group">
-                <label for="image" class="visually-hidden">店舗画像</label>
-                <input type="file" name="image_url" id="image" class="form-control" placeholder="Image"
-                    onchange="previewImage(this);" value="{{ old('image_url') }}">
-                <img id="preview" style="max-width:200px;">
-            </div>
 
+                <label for="image_url">店舗画像</label>
+                <input type="file" name="image_url" class="form-control" placeholder ="Image" onchange="previewImage(this);"
+                    value="{{ old('image_url') }}">
+                <img id="preview" style="max-width:200px;">
             </p>
             <button type="submit" class="btn btn-outline-success">登録</button>
-
         </form>
+
         <script>
             function previewImage(obj) {
                 var fileReader = new FileReader();
@@ -68,6 +71,6 @@
                 });
                 fileReader.readAsDataURL(obj.files[0]);
             }
-            </script>
+        </script>
 
-        @endsection
+    @endsection
