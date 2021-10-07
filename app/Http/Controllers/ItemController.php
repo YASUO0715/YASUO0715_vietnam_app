@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Item;
 use App\Http\Requests\ItemRequest;
 use Illuminate\Http\Request;
@@ -29,7 +30,8 @@ class ItemController extends Controller
 
     public function create(Item $item)
     {
-        return view('items.create');
+        $categories = Category::all();
+        return view('items.create',compact('categories'));
     }
 
     public function store(ItemRequest $request)
@@ -56,7 +58,8 @@ class ItemController extends Controller
     public function edit($id)
     {
         $item = Item::find($id);
-        return view('items.edit', ['item' => $item]);
+        $categories = Category::all();
+        return view('items.edit', compact('item','categories'));
     }
 
     public function update(ItemRequest $request, $id)
@@ -64,7 +67,7 @@ class ItemController extends Controller
 
         $item = Item::find($id);
 
-        if (!empty($request->file('image_url'))) {
+        if ($request->file('image_url')) {
             $path = $request->file('image_url')->store('item_image', 'public');
             $item->image_url = $path;
         }

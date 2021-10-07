@@ -28,7 +28,6 @@ class ItemRequest extends FormRequest
             'name_kana' => 'required|string|max:50',
             'campany_name' => 'required|string|min:1',
             'category_id' => 'required|integer',
-            // 'image_url' => 'image|file',
             'pr' => 'required|string|min:1',
             'price' => 'required|integer'
         ];

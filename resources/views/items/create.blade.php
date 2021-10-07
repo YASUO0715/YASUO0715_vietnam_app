@@ -35,8 +35,7 @@
                         value="{{ old('campany_name') }}"></label>
             </p>
             <p>
-                <label for="pr">説明 <br><textarea type="text" name="pr"
-                        value="{{ old('pr') }}">{{ old('pr') }}</textarea></label>
+                <label for="pr">説明 <br><textarea type="text" name="pr">{{ old('pr') }}</textarea></label>
             </p>
 
             <p>
@@ -44,19 +43,18 @@
             </p>
             <p>
             <p>
-                <label for="category_id">カテゴリー <br><select input type="text" name="category_id"
-                        value="{{ old('category_id') }}"></label>
-                <option value="カテゴリ" selected disabled>カテゴリー</option>
-                <option value=1>麺類</option>
-                <option value=2>コーヒー・お茶</option>
-                <option value=3>調味料</option>
-                <option value=4>野菜</option>
-                </select>
+                <label for="category_id">カテゴリー <br>
+                    <select name="category" id="category">
+                        <option value="カテゴリ" selected disabled>カテゴリー</option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}" @if (old('category') == $category->id) selected @endif>{{ $category->name }}</option>
+                        @endforeach
+                    </select>
             </p>
             <p>
 
                 <label for="image_url">店舗画像</label>
-                <input type="file" name="image_url" class="form-control" placeholder ="Image" onchange="previewImage(this);"
+                <input type="file" name="image_url" class="form-control" placeholder="Image" onchange="previewImage(this);"
                     value="{{ old('image_url') }}">
                 <img id="preview" style="max-width:200px;">
             </p>

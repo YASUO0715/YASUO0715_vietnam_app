@@ -43,21 +43,20 @@
         </p>
 
         <p>
-            <label for="category_id">カテゴリ <br><select input type="text" name="category_id"
-                    value="{{ old('category_id', $item->category_id) }}"></label>
-            <option value="カテゴリ" selected disabled>カテゴリ</option>
-            <option value=1>麺類</option>
-            <option value=2>コーヒー・お茶</option>
-            <option value=3>調味料</option>
-            <option value=4>野菜</option>
-            </select>
+            <label for="category_id">カテゴリ <br>
+                <select name="category" id="category">
+                    <option value="カテゴリ" selected disabled>カテゴリー</option>
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}" @if (old('category') == $category->id) selected @endif>{{ $category->name }}</option>
+                    @endforeach
+                </select>
         </p>
 
         <p>
             <label for="image_url">画像 </label><br>
             <input type="file" name="image_url" class="form-control" placeholder="Image" onchange="previewImage(this);"
                 value="{{ old('image', Storage::disk('public')->url($item->image_url)) }}">
-            <img id="preview" style="max-width:200px;" src="  @if (!empty($item->image_url))
+            <img id="preview" style="max-width:200px;" src="   @if (!empty($item->image_url))
             {{ Storage::disk('public')->url($item->image_url) }}
             @endif">
         </p>
