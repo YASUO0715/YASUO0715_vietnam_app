@@ -44,9 +44,9 @@
             </p>
             <p>
             <p>
-                <label for="category_id">カテゴリーID <br><select input type="text" name="category_id"
+                <label for="category_id">カテゴリー <br><select input type="text" name="category_id"
                         value="{{ old('category_id') }}"></label>
-                <option value="カテゴリ" selected disabled>カテゴリ</option>
+                <option value="カテゴリ" selected disabled>カテゴリー</option>
                 <option value=1>麺類</option>
                 <option value=2>コーヒー・お茶</option>
                 <option value=3>調味料</option>
