@@ -43,7 +43,8 @@
         </p>
 
         <p>
-            <label for="category_id">カテゴリ <br><select input type="text" name="category_id"  value="{{ old('category_id', $item->category_id) }}"></label>
+            <label for="category_id">カテゴリ <br><select input type="text" name="category_id"
+                    value="{{ old('category_id', $item->category_id) }}"></label>
             <option value="カテゴリ" selected disabled>カテゴリ</option>
             <option value=1>麺類</option>
             <option value=2>コーヒー・お茶</option>
@@ -52,24 +53,26 @@
             </select>
         </p>
 
-        <p>              
+        <p>
             <label for="image_url">画像 </label><br>
-            <input type="file" name="image_url"  class="form-control" placeholder="Image" onchange="previewImage(this);" 
-            value="{{ old('image_url')}}">
-            <img id="preview" style="max-width:200px;">
+            <input type="file" name="image_url" class="form-control" placeholder="Image" onchange="previewImage(this);"
+                value="{{ old('image', Storage::disk('public')->url($item->image_url)) }}">
+            <img id="preview" style="max-width:200px;" src="  @if (!empty($item->image_url))
+            {{ Storage::disk('public')->url($item->image_url) }}
+            @endif">
         </p>
         <button type="submit" class="btn btn-outline-success"> 更新 </button>
     </form>
 
     <script>
-            function previewImage(obj) {
-                var fileReader = new FileReader();
-                fileReader.onload = (function() {
-                    document.getElementById('preview').src = fileReader.result;
-                });
-                fileReader.readAsDataURL(obj.files[0]);
-            }
-            </script>
+        function previewImage(obj) {
+            var fileReader = new FileReader();
+            fileReader.onload = (function() {
+                document.getElementById('preview').src = fileReader.result;
+            });
+            fileReader.readAsDataURL(obj.files[0]);
+        }
+    </script>
 
 
 @endsection
